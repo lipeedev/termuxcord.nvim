@@ -28,13 +28,13 @@ function getGitRemoteUrl(dir) {
 
   const configPath = path.join(rootDir, '.git', 'config');
   if (!fs.existsSync(configPath)) {
-    throw new Error('.git/config not found');
+    return ''
   }
 
   const configContent = fs.readFileSync(configPath, 'utf8');
   const remoteUrlMatch = configContent.match(/\[remote "origin"\][\s\S]*?url = (.+)/);
   if (!remoteUrlMatch) {
-    throw new Error('remote "origin" URL not found');
+    return ''
   }
 
   return remoteUrlMatch[1].trim();

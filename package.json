@@ -1,0 +1,12 @@
+{
+  "name": "termuxcord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rpc.js",
+  "keywords": [],
+  "author": "lipeedev",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

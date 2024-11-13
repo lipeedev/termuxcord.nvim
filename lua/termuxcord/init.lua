@@ -27,7 +27,7 @@ end
 
 local function update_discord_presence()
   if not config.token or config.token == "" then
-    print("[termux-rpc] No token provided. Please set it up in your config.")
+    print("[termuxcord] No token provided. Please set it up in your config.")
     return
   end
 
@@ -46,9 +46,33 @@ local function update_discord_presence()
   })
 end
 
+local function install_node_dependencies()
+  local script_path = debug.getinfo(1, "S").source:sub(2):match("(.*/)")
+  local node_modules_path = script_path .. "node_modules"
+
+  if vim.fn.empty(vim.fn.glob(node_modules_path)) == 1 then
+    print('[termuxcord] Installing Node.js dependencies...')
+
+    vim.fn.jobstart('npm install', {
+      cwd = script_path,
+      on_exit = function(_, code)
+        if code == 0 then
+          print("[termuxcord] Node.js dependencies installed successfully.")
+          update_discord_presence()
+        else
+          print("[termuxcord] Failed to install Node.js dependencies.")
+        end
+      end
+    })
+  end
+end
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = "*",
-  callback = update_discord_presence
+  callback = function()
+    install_node_dependencies()
+    update_discord_presence()
+  end
 })
 
 vim.api.nvim_create_autocmd({ "VimLeavePre" }, {

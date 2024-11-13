@@ -20,9 +20,9 @@ function M.setup(_config)
 end
 
 local function get_js_path()
-  local init_path = vim.api.nvim_get_runtime_file("lua/termuxcord/init.lua", false)[1]
-  local dir_path = init_path:match("(.*/)")
-  return dir_path .. "rpc.js"
+  local script_path = debug.getinfo(1, "S").source:sub(2):match("(.*/)")
+  local rpc_path = script_path .. "rpc.js"
+  return rpc_path
 end
 
 local function update_discord_presence()

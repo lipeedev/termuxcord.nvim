@@ -3,7 +3,7 @@
 That's a Neovim plugin designed primarily for Termux users. It sends rich presence information to Discord, showing details about what you are currently editing.
 
 ## Important Note
-To use this plugin, you need to join the **[Discord server](https://discord.gg/8e4KDQmV8J)**. This is required for the plugin to function correctly.
+To use this plugin, you need to join the **[Discord server](https://discord.gg/WWbu4xCc5d)**. This is required for the plugin to function correctly.
 
 ## Features
 

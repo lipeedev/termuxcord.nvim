@@ -1,9 +1,8 @@
 _G.node_process_id = nil
-_G.start_timestamp = math.floor(require('socket').gettime() * 1000)
+_G.start_timestamp = math.floor(os.time(os.date("!*t")) * 1000)
 
 local M = {}
 local config = {}
-
 
 function M.setup(_config)
   config.token = _config.token or nil

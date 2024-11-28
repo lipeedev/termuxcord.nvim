@@ -1,5 +1,6 @@
 _G.node_process_id = nil
-_G.start_timestamp = math.floor(os.time(os.date("!*t")) * 1000)
+local dateTable = os.date("!*t")
+_G.start_timestamp = (os.time(dateTable) * 1000) - (1000 * 60 * 60 * 3) --current timestamp - 3 hours (Brazil time)
 
 local M = {}
 local config = {}
@@ -29,6 +30,8 @@ local function update_discord_presence()
     print("[termuxcord] No token provided. Please set it up in your config.")
     return
   end
+
+  print(_G.start_timestamp)
 
   config.filename = vim.fn.expand('%:t') or "None"
 

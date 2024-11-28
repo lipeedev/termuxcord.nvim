@@ -31,8 +31,6 @@ local function update_discord_presence()
     return
   end
 
-  print(_G.start_timestamp)
-
   config.filename = vim.fn.expand('%:t') or "None"
 
   if _G.node_process_id then

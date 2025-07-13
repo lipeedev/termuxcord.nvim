@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const fs = require('fs')
 const { getGitRemoteUrl, isGitRepository } = require('./utils')
 const data = JSON.parse(process.argv[2] || '{}');
 const applicationId = data.application_id
@@ -12,11 +13,9 @@ const isOnGitRepository = isGitRepository(data.cwd)
 ws?.on('open', async () => {
   console.log('[OPEN] Connected to gateway');
 
-  const title = data.title;
-  const filename = data.filename;
-  const workspace = data.workspace
+  const { title, filename, workspace } = data
   const timestampStart = Number(data.start_timestamp) || Date.now();
-
+  fs.writeFileSync('log.txt', String(timestampStart))
   const { largeImageUrl, smallImageUrl } = await getImageFromFileExtension(filename);
 
   const identifyPayload = {

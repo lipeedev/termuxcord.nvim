@@ -1,7 +1,6 @@
 _G.node_process_id = nil
 local dateTable = os.date("!*t")
-_G.start_timestamp = (os.time(dateTable) * 1000) - (1000 * 60 * 60 * 3) --current timestamp - 3 hours (Brazil time)
-
+_G.start_timestamp = (os.time(dateTable) * 1000)
 local M = {}
 local config = {}
 

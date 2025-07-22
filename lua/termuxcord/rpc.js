@@ -1,5 +1,4 @@
 const WebSocket = require('ws');
-const fs = require('fs')
 const { getGitRemoteUrl, isGitRepository } = require('./utils')
 const data = JSON.parse(process.argv[2] || '{}');
 const applicationId = data.application_id
@@ -15,7 +14,6 @@ ws?.on('open', async () => {
 
   const { title, filename, workspace } = data
   const timestampStart = Number(data.start_timestamp) || Date.now();
-  fs.writeFileSync('log.txt', String(timestampStart))
   const { largeImageUrl, smallImageUrl } = await getImageFromFileExtension(filename);
 
   const identifyPayload = {
